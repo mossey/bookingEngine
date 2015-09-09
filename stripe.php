@@ -6,7 +6,9 @@ $radio=$_POST['sessions'];
 $ePrice=$_POST['price'];
 $pSize=$_POST['party'];
 $amountPaid=$pSize*$ePrice;
+$stripeAmount=$_POST['price']*$_POST['party']*100;
 $methodd=$_POST['payments'];
+
 if(($_POST['payments'])=="card"){
     $code=$token;
 }
@@ -67,6 +69,7 @@ if (mysqli_query($conn, $sql)) {
 
 mysqli_close($conn);
 
+if($_POST['payments']=='card'){
 $token  = $_POST['stripeToken'];
 $email  =$_POST['email'];
 $customer = \Stripe\Customer::create(array(
@@ -76,12 +79,14 @@ $customer = \Stripe\Customer::create(array(
 
 $charge = \Stripe\Charge::create(array(
     'customer' => $customer->id,
-    'amount'   => 5000,
-    'currency' => 'usd'
+    'amount'   => $stripeAmount,
+    'currency' => 'kes'
 ));
 
 echo '<h1>Successfully charged $50.00!</h1>';
 
+
+}
 try {
     $pdo = new PDO('mysql:host=localhost;dbname=book;','root','qwerty41');
 
@@ -130,7 +135,7 @@ try {
     $prepare;
 
 
-    for ($i = 0; $i < count($name); $i++) {
+    for ($i = 0; $i < (count($name)-1); $i++) {
 
         $query = $pdo->prepare("INSERT INTO attendees (fName, email, phone, allergies,bookerStatus,bookingID) VALUES (:name, :email, :phone ,:allergies,:bName,:id)");
         $query->execute(array(
@@ -152,71 +157,39 @@ try {
 
 
 
-//the email payment module
-
-// $email and $message are the data that is being
-// posted to this page from our html contact form
-$email = $_REQUEST['email'] ;
-$message = $_REQUEST['message'] ;
-// $email and $message are the data that is being
-// posted to this page from our html contact form
-$email = $_POST['email'] ;
-$message = 'oiodiadioasiohassiofhasiosfhqioihiohioiahfioaihf';
-
-// When we unzipped PHPMailer, it unzipped to
-// public_html/PHPMailer_5.2.0
 
 
-$mail = new PHPMailer();
 
-// set mailer to use SMTP
-$mail->IsSMTP();
 
-// As this email.php script lives on the same server as our email server
-// we are setting the HOST to localhost
-$mail->Host = "smtp.gmail.com";  // specify main and backup server
 
-$mail->SMTPAuth = true;     // turn on SMTP authentication
+$mail             = new PHPMailer(); // defaults to using php "mail()"
 
-// When sending email using PHPMailer, you need to send from a valid email address
-// In this case, we setup a test email account with the following credentials:
-// email: send_from_PHPMailer@bradm.inmotiontesting.com
-// pass: password
-$mail->Username = "nandwa.moses@gmail.com";  // SMTP username
-$mail->Password = "M41NANDWA"; // SMTP password
+$mail->IsSendmail(); // telling the class to use SendMail transport
 
-// $email is the user's email address the specified
-// on our contact us page. We set this variable at
-// the top of this page with:
-// $email = $_REQUEST['email'] ;
-$mail->From = $email;
+$body             = file_get_contents('partyMail.html');
+$body             = eregi_replace("[\]",'',$body);
 
-// below we want to set the email address we will be sending our email to.
-$mail->AddAddress($_POST['email']);
+$mail->AddReplyTo("bookings.gizani.com","Gizani Bookings");
 
-// set word wrap to 50 characters
-$mail->WordWrap = 50;
-// set email format to HTML
-$mail->IsHTML(true);
+$mail->SetFrom('bookings.gizani.com', 'Gizani Bookings');
 
-$mail->Subject = "You have received feedback from your website!";
 
-// $message is the user's message they typed in
-// on our contact us page. We set this variable at
-// the top of this page with:
-// $message = $_REQUEST['message'] ;
-$mail->Body    = $message;
-$mail->AltBody = $message;
+$address = $_POST['email'];
+$mail->AddAddress($address, "Customer");
 
-if(!$mail->Send())
-{
-    echo "Message could not be sent. <p>";
-    echo "Mailer Error: " . $mail->ErrorInfo;
-    exit;
+$mail->Subject    = "Booking has been confirmed";
+
+$mail->AltBody    = "The booking has been nconfirmed"; // optional, comment out and test
+
+$mail->MsgHTML($body);
+
+
+if(!$mail->Send()) {
+  echo "Mailer Error: " . $mail->ErrorInfo;
+} else {
+  echo "Message sent!";
 }
-
-echo "Message has been sent";
-
+    
 
 
 

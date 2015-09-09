@@ -25,6 +25,22 @@ $(window).load(function(){
 
 
     });
+    $(":checkbox").click(function(){
+                    $(this).click(function(){
+                        if (this.checked) {
+                            $(".xtradetails").show();
+
+
+                        } else{
+                            $(".xtradetails").hide();
+
+                        }
+                    })
+                })
+    $('#submitMpesa').click(function(event) {
+    $('#mpesaProcedure').hide();
+    $('#succesifulPay').show();
+});
     $('select').change(function(){
         var price=$("#price").val();
         var party=$("#partysizee").val();
@@ -78,25 +94,15 @@ $(document).ready(function(){
 
             var num = parseInt($(this).val(), 10)-1;
 
-            var container = $('<div />');
+            var container = $('<div></div>');
+            container.append('<h4>Party Details <h4>');
             for(var i = 1; i <= num; i++) {
 
                 container.append('<div class="row"><h5></h5><div class="col-xs-4 col-sm-4 col-md-4 col-lg-4"><input id="id'+i+'" name="namee[]" placeholder="name" class="form-control" /></div> <div id="desc">are you allergic to anything?</div> <label><input type="checkbox" name="allergyCheck" value="" id="yes"></label> <div class="xtradetails"><input type=" text" name="allergyy[]" placeholder="description of allergy" class="form-control">  <input class="form-control" type="text" name="phonee[]" placeholder="Phone" id="">   <input class="form-control" type="text" placeholder="email" name="emaill[]" id=""></div><br>');
 
                 $('#partyDetails').html(container);
                 $(".xtradetails").hide();
-                $(":checkbox").each(function(){
-                    $(this).click(function(){
-                        if (this.checked) {
-                            $(".xtradetails").show();
-
-
-                        } else{
-                            $(".xtradetails").hide();
-
-                        }
-                    })
-                })
+                
             }
 
         }
@@ -184,6 +190,7 @@ jQuery(function($) {
         // Prevent the form from submitting with the default action
         return false;
     });
+
 
 
 });

@@ -184,7 +184,7 @@ nav{
 {
     position: relative;
     display: block;
-    width: 100%;
+    
 }
 
 .wizard.vertical > .steps
@@ -202,6 +202,7 @@ nav{
 
 .wizard > .steps > ul > li
 {
+
     width: 20%;
 }
 
