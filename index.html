@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
+	<title>Gizani Booking Area</title>
+
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="css/gloal.css" />
+	<link rel="stylesheet" href="css/grid.css">
+	<link rel="stylesheet" href="">
+	<script src="jquery.min.js"></script>
+	<script type="text/javascript" src="https://js.stripe.com/v2/"/>
+	<script src="https://checkout.stripe.com/checkout.js"></script>
+	<link rel="stylesheet" href="css/glyphicons.css">
+
+	<script src="formcontrol.js"></script>
+	<script src="js/jquery.steps.js"></script> <link rel="stylesheet" href="slider.css">
+	<script>
+
+	</script>
+</head>
+
+<body>
+<div class="row" style="padding: 0px;">
+	<div class="col-sm-12" style="padding: 0px;">
+		<nav class="navbar navbar-default navbar-fixed-top" style="background-color: #fdb933; height: 50px; padding: 0 !important;" role="navigation">
+			<a class="navbar-brand" href="#"></a>
+			<ul class="nav navbar-nav">
+                Gizani
+			</ul>
+		</nav>
+	</div>
+</div>
+
+
+<div class="row" style="padding: 25px;">
+	<div class="col-sm-1">
+	</div>
+	<div class="col-sm-10">
+
+
+			<div style="position: relative">
+				<form id="myWizard" type="post" action="stripe.php" class="form-horizontal">
+					<input type="hidden" name="price" id="price" value="2500">
+					<input type="hidden" name="eventID" value="1">
+					<script>
+						$('a[href="#next"]').html($('a[href="#next"]').html()+'&raquo;');
+					</script>
+
+					<div id="example-basic">
+						<h3>Party Size</h3>
+						<section>
+							<h4>Great, you are about to embark on a very special experience</h4>
+							<br>
+
+							<div class="col-sm-4">
+								Dinner in The Dark
+								<br>
+								Tribe Hotel
+								<br>
+								Friday 25th of August 2015
+								<br>
+								<br>
+								<div id="TA_cdsratingsonlynarrow152" class="TA_cdsratingsonlynarrow">
+									<ul id="A27Iz99bDQ" class="TA_links vjGanGA">
+										<li id="t3i4uBQZ" class="HAIX9u6YS">
+											<a target="_blank" href="http://www.tripadvisor.co.uk/"><img src="http://www.tripadvisor.co.uk/img/cdsi/img2/branding/tripadvisor_logo_transp_340x80-18034-2.png" alt="TripAdvisor"/></a>
+										</li>
+									</ul>
+								</div>
+								<script src="http://www.jscache.com/wejs?wtype=cdsratingsonlynarrow&amp;uniq=152&amp;locationId=8052270&amp;lang=en_UK&amp;border=true&amp;display_version=2"></script>
+							</div>
+
+							<div class="col-sm-4 ">
+
+							</div>
+							<div  class="col-sm-4">
+								Which session would you like?
+								<div id="radio">
+
+								</div>
+								<div class="radio">
+									<label>
+										<input type="radio" name="sessions" value="1" checked="checked">
+										First session 7.00-9.00pm
+									</label>
+								</div>
+								<div class="radio">
+									<label>
+										<input type="radio" name="sessions" value="2" checked="checked">
+										Second Session 9.00-12.00am
+									</label>
+								</div>
+								<br>
+								<br>
+								How many people can we expect?
+								<select name="party" id="partysizee" class="form-control">
+									<option value="1"> 1 person</option>
+									<option value="2"> 2 people</option>
+									<option value="3"> 3 people</option>
+									<option value="4"> 4 people</option>
+									<option value="5"> 5 people</option>
+									<option value="6"> 6 people</option>
+									<option value="7"> 7 people</option>
+									<option value="8"> 8 people</option>
+									<option value="9"> 9 people</option>
+									<option value="10"> 10 people</option>
+								</select>
+							</div>
+
+						</section >
+						<h3>Details</h3>
+						<section style="height: auto;">
+							<H4>Complete Your Registration  <span><i class="fa fa-lock"></i> </span></H4>
+
+							We just need a few more details and you're good to go
+
+							<br>
+							<br>
+							<div class="row">
+
+								<div class="col-sm-10">
+
+									<div class="col-sm-1">
+										Name
+									</div>
+
+							<span class="col-sm-9" style="display: inline-table;">
+
+                                    <input type="text" placeholder="First Name" name="fName" class="">
+
+
+                                    <input type="text" name="lName" placeholder="Last Name" id="" class="">
+                                <small>To whom do we address ourselves</small>
+                                <br>
+
+							</span>
+								</div>
+
+								<div class="col-sm-2">
+
+								</div>
+
+							</div>
+
+							<div class="row">
+								<div class="col-sm-10">
+									<div class="col-10">
+										<div class="col-sm-1">
+
+											Email
+
+										</div>
+
+										<div class="col-sm-9">
+											<input type="text" name="email"  placeholder="Email" class="form-control">
+
+											<small>Where can we send the confirmation to?</small>
+											<br>
+										</div>
+
+									</div>
+
+								</div>
+
+								<div class="col-sm-4">
+
+								</div>
+
+							</div>
+							<div class="row">
+								<div class="col-sm-10">
+									<div class="col-10">
+										<div class="col-sm-1">
+											Phone
+										</div>
+
+										<div class="col-sm-9">
+
+											<input type="text" placeholder="phone"  name="phone" class="form-control">
+
+											<small>Incase we want to contact you</small>
+											<br>
+										</div>
+
+									</div>
+
+								</div>
+
+								<div class="col-sm-4">
+
+								</div>
+
+							</div>
+							<div class="row">
+								<div class="col-sm-10">
+									<div class="col-10">
+										<div class="col-sm-1">
+											Allergies
+
+
+										</div>
+
+										<div class="col-sm-9">
+											<textarea rows="1" onclick="this.rows = '5';"  type="text" placeholder="Allergies" name="allergies" class="form-control"></textarea>
+											<br>
+											<small>Any allergues that our chef should know about?</small>
+											<br>
+
+										</div>
+
+
+									</div>
+
+
+								</div>
+
+								<div class="col-sm-4">
+
+								</div>
+
+
+							</div>
+							<div class="row" style="width: 100%;">
+								<div class="col-sm-10 ">
+									<div id="partyDetails" style="">
+										<script >
+											$(document).ready(function(){
+
+												$('select').change(function() {
+													if($(this).value!=0||1){
+
+														var num = parseInt($(this).val(), 10)-1;
+
+														var container = $('<span/>');
+														for(var i = 1; i <= num; i++) {
+
+															container.append(' <div class="row" style="width: 100%;"> <div class="col-sm-10 " style=""><span style="display: inline-block;"> <input id="id'+i+'" name="namee[]" placeholder="name" class="" /><label>are you allergic to anything?  <input type="checkbox" name="allergyCheck" value="" id="yes"> </label> <div class="xtradetails"> <input type=" text" name="allergyy[]" placeholder="description of allergy" class=""> <input class="" type="text" name="phonee[]" placeholder="Phone" id=""> <input class="" type="text" placeholder="email" name="emaill[]" id=""> </div> </div> </span></div> <br');
+
+															$('#partyDetails').html(container);
+															$(".xtradetails").hide();
+															$(":checkbox").each(function(){
+																$(this).click(function(){
+																	if (this.checked) {
+																		$(".xtradetails").show();
+
+
+																	} else{
+																		$(".xtradetails").hide();
+
+																	}
+																})
+															})
+														}
+
+													}
+												});
+
+											})
+										</script>
+
+									</div>
+								</div>
+								<div class="col-sm-6">
+
+								</div>
+							</div>
+
+						</section>
+						<h3>Payment Method</h3>
+						<section>
+							<h4>Choose your preferred payment method<span><i class="fa fa-lock"></i> </span></h4>
+							<br>
+							We just need a few more details and You're Good to go
+							<br>
+							<div  class="col-sm-4">
+							</div>
+							<div  class="col-sm-4">
+								<div id="cost">
+									<script >
+
+									</script>
+								</div>
+							</div>
+							<br><br>
+							<label class="" style="border: dashed; width: 100% ">
+								<div id="card"style="padding: 10px; ">
+									<div class="col-sm-10">
+										<input type="radio" name="payments" value="card"  id="card">Creditcard(Visa/MasterCard/American Express)
+										<br>
+										Free
+										<br>
+										<br>
+										Most used payment mthod
+									</div>
+									<div class="col-sm-2">
+										<button style="padding: 10px; color: white; background-color: #fdb933; border-width: 0px; text-decoration: none; width: 100%; -webkit-border-radius: 5px;-moz-border-radius: 5px; border-radius: 5px; onclick="wizard.steps("setStep", 1);" id="btncard" name="submitstripe"><span><i class="fa fa-check"></i></span>next</button>
+
+									</div>
+								</div>
+							</label>
+							<br>
+							<br>
+							<label class="" style="border: dashed; width: 100%">
+								<div id="Mpesa" style="padding: 10px;  ">
+									<div class="col-sm-10">
+										<input type="radio" name="payments" value="mpesa" id="mpesa">Mpesa
+										<br>
+										Free
+										<br>
+									</div>
+									<div class="col-sm-2">
+										<a href="#procedures">
+											<button style="padding: 10px; color: white; background-color: #fdb933; border-width: 0px; width: 100%; text-decoration: none; -webkit-border-radius: 5px;-moz-border-radius: 5px; border-radius: 5px; onclick="wizard.steps("setStep", 1);" id="btnmpesa" name="submitstripe"><span><i class="fa fa-check"></i></span>next</button>
+										</a>
+									</div>
+								</div>
+							</label>
+						</section>
+						<h3>Payment</h3>
+						<section id="procedures">
+							<div class="row">
+								<div class="col-sm-4">
+
+								</div>
+								<div class="col-sm-4">
+									<div id="mpesaProcedure"  style="">
+										<h4 style="width: 100%; text-align: center;">Lipa na Mpesa Procedure</h4>
+
+										<input type="text" placeholder="confirmation  Code" style="width: 100%" name="code" class="form-control">
+										<br>
+
+
+
+										1. Select "Pay Bill" From Mpesa menu.
+										<br>
+										2. Enter Gizani Business Number ie. 972988
+										<br>
+										3. Enter Account Details
+										<br>
+										4. Enter the exact amount that you would like to  pay for your case
+										<br>
+										5. Enter your Mpesa Bill
+										<br>
+										6. Confirm your Details complete the payment.
+										<br>
+
+										7. You will receive a confirmation sms.
+										<br>
+
+										8. Enter the transaction number on the provided input field and click enter.
+										<br>
+
+										<button type="submit" id="submitMpesa" class="btn btn-block" style="background-color: #fdb933; border-width: 0px; width: 100%; text-decoration: none; -webkit-border-radius: 5px;-moz-border-radius: 5px; border-radius: 5px; ">Submit</button>
+									</div>
+									<div id="cardProcedure">
+										<span class="payment-errors"></span>
+
+										<div class="form-row">
+											<label>
+
+												<input type="text" size="" style="width: 100%;" class="form-control" placeholder="Card number"
+													   data-stripe="number"/>
+											</label>
+										</div>
+										<br>
+
+										<div class="form-row">
+											<label>
+
+												<input type="text" size="" style="width: 100%;" class="form-control" placeholder="cvc"
+													   data-stripe="cvc"/>
+											</label>
+										</div>
+										<br>
+
+										<div class="form-row">
+											<label>
+												<span>Expiration (MM/YYYY)</span>
+												<br>
+												<table>
+													<tr>
+														<td>
+															<input style="" placeholder="MM" type="text" class="form-control" size=""
+																   data-stripe="exp-month"/>
+														</td>
+														<td>
+															<input type="text" size="" placeholder="YYYY"
+																   class="form-control" data-stripe="exp-year"/>
+														</td>
+													</tr>
+												</table>
+
+											</label>
+											`
+											<span>  </span>
+										</div>
+										<br>
+
+										<button type="" id="submitstripe" style="background-color: #fdb933; border-width: 0px; width: 100%; text-decoration: none; -webkit-border-radius: 5px;-moz-border-radius: 5px; border-radius: 5px; "
+												class="btn  btn-block">Submit Payment
+										</button>
+									</div>
+
+								</div>
+
+								<div class="col-sm-4">
+
+								</div>
+								<div id="succesifulPay" style="align-content: center; align-items: center; ">
+								<div class="row">
+									<div class="col-sm-4">
+
+									</div>
+									<div class="col-sm-4" style="text-align: center">
+										<h4>
+											Your payment has been received.
+										</h4>
+										Click Finish to complete the booking process
+										<br>
+
+										<button type="submit" class="final btn btn-block" style="background-color: #fdb933; border-width: 0px; width: 100%; text-decoration: none; -webkit-border-radius: 5px;-moz-border-radius: 5px; border-radius: 5px; " id="Final">Finish </button>
+
+									</div>
+									<div class="col-sm-4">
+
+									</div>
+								</div>
+								</div>
+							</div>
+						</section>
+						<h3>Thank You</h3>
+						<section>
+
+
+
+							<div class="row">
+								<div class="col-sm-1">
+
+								</div>
+								<div class="col-sm-6 ">
+									<H4>Thank You and see you there!</H4>
+									Dinner in the Dark
+									<br>
+									Tribe Hotel
+									<br>
+									Friday 25th of August
+									<br>
+									<br>
+									2 people
+
+									<p>
+										<a href="" style="color: orange">What do you expect at Gizani?</a>
+									</p>
+								</div>
+								<div class="col-sm-4 ">
+									<div id="map-canvas">
+
+									</div>
+
+									<div id="googleMap" style="width:150px;height:150px;"></div>
+
+									<br>
+									<a href="" style="color: orange"><span
+											class="glyphicon glyphicon-plus"></span> Add to calendar</a>
+								</div>
+								<div class="col-sm-1">
+
+								</div>
+							</div>
+
+						</section>
+					</div>
+				</form>
+
+			</div>
+
+	</div>
+	<div class="col-sm-1">
+
+	</div>
+</div>
+<!-- Latest compiled and minified JS -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDM2ba2FEiJ_0wog025THyXxT2NLKg_aLc"></script>
+</body>
+</html>
